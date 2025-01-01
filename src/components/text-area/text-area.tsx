@@ -29,7 +29,9 @@ export const TextArea: FC<TextAreaProps> = ({
   ...props
 }) => {
   const { submitCount, getFieldMeta, getFieldProps } = useFormikContext();
+
   const [meta, field] = [getFieldMeta(name), getFieldProps(name)];
+
   const { error, helperText: errorHelperText } = getErrorFieldProps(
     meta,
     submitCount
@@ -56,7 +58,7 @@ export const TextArea: FC<TextAreaProps> = ({
         {...props}
       />
       {(hasFieldError || helperText) && (
-        <Text className={getErrorMessageStyle(hasFieldError)}>
+        <Text className={getErrorMessageStyle(hasFieldError)} size="1">
           {hasFieldError ? errorHelperText : helperText}
         </Text>
       )}

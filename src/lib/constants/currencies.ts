@@ -2,163 +2,163 @@ export const DEFAULT_CURRENCY = "MYR";
 
 export const currencies = [
   {
-    code: "USD",
+    value: "USD",
     label: "USD ($)",
   },
   {
-    code: "EUR",
+    value: "EUR",
     label: "EUR (€)",
   },
   {
-    code: "GBP",
+    value: "GBP",
     label: "GBP (£)",
   },
   {
-    code: "AUD",
+    value: "AUD",
     label: "AUD (A$)",
   },
   {
-    code: "CAD",
+    value: "CAD",
     label: "CAD (C$)",
   },
   {
-    code: "JPY",
+    value: "JPY",
     label: "JPY (¥)",
   },
   {
-    code: "CNY",
+    value: "CNY",
     label: "CNY (¥)",
   },
   {
-    code: "INR",
+    value: "INR",
     label: "INR (₹)",
   },
   {
-    code: "AED",
+    value: "AED",
     label: "AED (د.إ)",
   },
   {
-    code: "SAR",
+    value: "SAR",
     label: "SAR (﷼)",
   },
   {
-    code: "CHF",
+    value: "CHF",
     label: "CHF (Fr)",
   },
   {
-    code: "SGD",
+    value: "SGD",
     label: "SGD (S$)",
   },
   {
-    code: "NZD",
+    value: "NZD",
     label: "NZD (NZ$)",
   },
   {
-    code: "HKD",
+    value: "HKD",
     label: "HKD (HK$)",
   },
   {
-    code: "SEK",
+    value: "SEK",
     label: "SEK (kr)",
   },
   {
-    code: "KRW",
+    value: "KRW",
     label: "KRW (₩)",
   },
   {
-    code: "BRL",
+    value: "BRL",
     label: "BRL (R$)",
   },
   {
-    code: "MXN",
+    value: "MXN",
     label: "MXN ($)",
   },
   {
-    code: "PLN",
+    value: "PLN",
     label: "PLN (zł)",
   },
   {
-    code: "TRY",
+    value: "TRY",
     label: "TRY (₺)",
   },
   {
-    code: "ZAR",
+    value: "ZAR",
     label: "ZAR (R)",
   },
   {
-    code: "NOK",
+    value: "NOK",
     label: "NOK (kr)",
   },
   {
-    code: "DKK",
+    value: "DKK",
     label: "DKK (kr)",
   },
   {
-    code: "ILS",
+    value: "ILS",
     label: "ILS (₪)",
   },
   {
-    code: "THB",
+    value: "THB",
     label: "THB (฿)",
   },
   {
-    code: "IDR",
+    value: "IDR",
     label: "IDR (Rp)",
   },
   {
-    code: "CZK",
+    value: "CZK",
     label: "CZK (Kč)",
   },
   {
-    code: "ARS",
+    value: "ARS",
     label: "ARS ($)",
   },
   {
-    code: "CLP",
+    value: "CLP",
     label: "CLP ($)",
   },
   {
-    code: "PHP",
+    value: "PHP",
     label: "PHP (₱)",
   },
   {
-    code: DEFAULT_CURRENCY,
+    value: DEFAULT_CURRENCY,
     label: `${DEFAULT_CURRENCY} (RM)`,
   },
   {
-    code: "HUF",
+    value: "HUF",
     label: "HUF (Ft)",
   },
   {
-    code: "PKR",
+    value: "PKR",
     label: "PKR (₨)",
   },
   {
-    code: "EGP",
+    value: "EGP",
     label: "EGP (E£)",
   },
   {
-    code: "TWD",
+    value: "TWD",
     label: "TWD (NT$)",
   },
   {
-    code: "RON",
+    value: "RON",
     label: "RON (lei)",
   },
   {
-    code: "VND",
+    value: "VND",
     label: "VND (₫)",
   },
   {
-    code: "COP",
+    value: "COP",
     label: "COP ($)",
   },
   {
-    code: "QAR",
+    value: "QAR",
     label: "QAR (﷼)",
   },
   {
-    code: "KWD",
+    value: "KWD",
     label: "KWD (د.ك)",
   },
 ];

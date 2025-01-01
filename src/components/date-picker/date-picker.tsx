@@ -73,7 +73,7 @@ export const DatePicker: FC<DatePickerProps> = ({
         }}
       />
       {(hasFieldError || helperText) && (
-        <Text className={getErrorMessageStyle(hasFieldError)}>
+        <Text className={getErrorMessageStyle(hasFieldError)} size="1">
           {hasFieldError ? meta.error : helperText}
         </Text>
       )}

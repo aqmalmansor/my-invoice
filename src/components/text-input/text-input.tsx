@@ -14,6 +14,7 @@ interface TextInputProps extends TextField.RootProps {
   name: string;
   label?: string;
   helperText?: string;
+  startAdornment?: React.ReactNode;
 }
 
 export const TextInput: FC<TextInputProps> = ({
@@ -21,10 +22,13 @@ export const TextInput: FC<TextInputProps> = ({
   label,
   helperText,
   defaultValue = "",
+  startAdornment,
   ...props
 }) => {
   const { submitCount, getFieldMeta, getFieldProps } = useFormikContext();
+
   const [meta, field] = [getFieldMeta(name), getFieldProps(name)];
+
   const { error, helperText: errorHelperText } = getErrorFieldProps(
     meta,
     submitCount
@@ -50,9 +54,11 @@ export const TextInput: FC<TextInputProps> = ({
             : field.value
         }
         {...props}
-      />
+      >
+        {startAdornment && <TextField.Slot>{startAdornment}</TextField.Slot>}
+      </TextField.Root>
       {(hasFieldError || helperText) && (
-        <Text className={getErrorMessageStyle(hasFieldError)}>
+        <Text className={getErrorMessageStyle(hasFieldError)} size="1">
           {hasFieldError ? errorHelperText : helperText}
         </Text>
       )}

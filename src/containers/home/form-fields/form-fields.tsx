@@ -15,7 +15,7 @@ import {
 } from "../config";
 
 export const FormFields: FC = () => {
-  const debugMode = true;
+  const debugMode = false;
 
   const initialValues = debugMode ? debugFormValues : initialFormValues;
 

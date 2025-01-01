@@ -19,7 +19,7 @@ export const BusinessFields: FC = () => {
         required
         name="business.phone"
         label="Business Phone"
-        helperText="Please enter your invoice number"
+        helperText="Please enter your company phone number"
         type="number"
       />
       <TextInput

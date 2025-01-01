@@ -73,7 +73,7 @@ export const InvoiceItemsFields: FC = () => {
             });
 
           const renderAddItem = () => (
-            <div className="grid col-span-9 justify-end">
+            <div className="grid col-span-9 justify-end" key={uuidv4()}>
               <Button
                 type="button"
                 onClick={() =>

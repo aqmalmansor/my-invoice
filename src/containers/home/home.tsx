@@ -1,13 +1,13 @@
 import { Text } from "@radix-ui/themes";
 import { FC } from "react";
 
-import { Form } from "./form";
+import { FormFields } from "./form-fields";
 
 export const Home: FC = () => {
   return (
     <div>
       <Text>My Invoice Generator</Text>
-      <Form />
+      <FormFields />
     </div>
   );
 };

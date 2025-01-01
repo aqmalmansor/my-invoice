@@ -1,4 +1,9 @@
-import { Flex, Text, TextField } from "@radix-ui/themes";
+import {
+  Flex,
+  Text,
+  TextArea as RadixTextArea,
+  TextAreaProps as RadixTextAreaProps,
+} from "@radix-ui/themes";
 import { useFormikContext } from "formik";
 import { FC } from "react";
 
@@ -10,13 +15,13 @@ import {
   getErrorMessageStyle,
 } from "../../lib/utils";
 
-interface TextInputProps extends TextField.RootProps {
+interface TextAreaProps extends RadixTextAreaProps {
   name: string;
   label?: string;
   helperText?: string;
 }
 
-export const TextInput: FC<TextInputProps> = ({
+export const TextArea: FC<TextAreaProps> = ({
   name,
   label,
   helperText,
@@ -40,10 +45,9 @@ export const TextInput: FC<TextInputProps> = ({
           {props.required && "*"}
         </Text>
       )}
-      <TextField.Root
+      <RadixTextArea
         {...field}
-        className={cn([getErrorInputStyle(hasFieldError), "h-auto"])}
-        type="text"
+        className={cn([getErrorInputStyle(hasFieldError)], "min-h-[100px]")}
         value={
           field.value === undefined || field.value === null
             ? defaultValue

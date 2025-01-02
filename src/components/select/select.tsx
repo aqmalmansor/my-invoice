@@ -34,7 +34,7 @@ export const Select: FC<SelectProps> = ({
     getFieldHelpers(name),
   ];
 
-  const hasFieldError = !!meta.error;
+  const hasFieldError = !!meta.error && !!meta.touched;
 
   return (
     <Flex direction="column" gap="1" mb="2" justify="center">

@@ -136,12 +136,13 @@ export const InvoiceItemsFields: FC = () => {
 
   return (
     <div className="my-3 w-full">
-      <div className="pt-3 pb-2">
-        <Text weight="bold" size="6">
-          Manage your invoice items here
-        </Text>
-      </div>
-      <Separator size="4" mb="5" />
+      <Text
+        weight="bold"
+        size="6"
+        className="pb-2 mb-3 border-b-2 grid col-span-2"
+      >
+        Manage your invoice items here
+      </Text>
       <InvoiceConfig />
       <div className="grid grid-cols-8 gap-4">
         {invoiceItemsHeaders}

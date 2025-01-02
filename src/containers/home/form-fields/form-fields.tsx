@@ -29,8 +29,14 @@ export const FormFields: FC = () => {
         {({ submitForm, isValid, dirty, resetForm, errors }) => (
           <Form noValidate>
             <InvoiceFields />
-            <BusinessFields />
-            <CustomerFields />
+            <div className="grid grid-cols-2 gap-8">
+              <div className="grid col-span-1">
+                <BusinessFields />
+              </div>
+              <div className="grid col-span-1">
+                <CustomerFields />
+              </div>
+            </div>
             <InvoiceItemsFields />
             <Debug
               display={debugMode}

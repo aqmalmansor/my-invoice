@@ -50,7 +50,7 @@ export const InvoiceConfig: FC = () => {
   return (
     <div className="block">
       <Text weight="bold" size="4" className="grid col-span-3">
-        Invoice Configuration
+        Invoice configuration
       </Text>
       <div className="grid grid-cols-10 gap-2 mt-3 mb-5">
         {renderTaxField()}

@@ -6,8 +6,8 @@ import { TextArea, TextInput } from "../../../components";
 export const CustomerFields: FC = () => {
   return (
     <>
-      <Text weight="bold" size="4">
-        Customer
+      <Text weight="bold" size="6" className="pb-2 mb-3 border-b-2">
+        Customer details
       </Text>
       <TextInput
         required

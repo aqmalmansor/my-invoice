@@ -1,5 +1,5 @@
 import { Formik, Form } from "formik";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Button, Flex } from "@radix-ui/themes";
 
 import { Debug } from "./debug";
@@ -7,6 +7,7 @@ import { BusinessFields } from "./business-fields";
 import { CustomerFields } from "./customer-fields";
 import { InvoiceFields } from "./invoice-fields";
 import { InvoiceItemsFields } from "./invoice-items-fields";
+import { PreviewPdfModal } from "./preview-pdf-modal";
 import {
   debugFormValues,
   FormValuesType,
@@ -15,9 +16,12 @@ import {
 } from "../config";
 
 export const FormFields: FC = () => {
-  const debugMode = false;
-
+  const debugMode = true;
   const initialValues = debugMode ? debugFormValues : initialFormValues;
+
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggle = () => setIsOpen(!isOpen);
 
   return (
     <div>
@@ -28,6 +32,9 @@ export const FormFields: FC = () => {
       >
         {({ submitForm, isValid, dirty, resetForm, errors }) => (
           <Form noValidate>
+            {isOpen && (
+              <PreviewPdfModal toggle={toggle} onSubmit={submitForm} />
+            )}
             <InvoiceFields />
             <div className="grid grid-cols-2 gap-8">
               <div className="grid col-span-1">
@@ -54,11 +61,11 @@ export const FormFields: FC = () => {
                 Reset
               </Button>
               <Button
-                type="submit"
-                onClick={() => submitForm()}
+                type="button"
+                onClick={() => setIsOpen(true)}
                 className="flex-grow min-w-[200px]"
               >
-                Generate PDF
+                Preview PDF
               </Button>
             </Flex>
           </Form>

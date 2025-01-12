@@ -41,7 +41,7 @@ export const InvoiceHeader: FC<InvoiceHeaderProps> = ({
       <View style={styles.container}>
         <View style={styles.column}>
           <View style={styles.personalInfoCol}>
-            <Text style={[styles.h5, styles.labelOpa60]}>From</Text>
+            <Text style={[styles.h5, styles.labelOpa65]}>From</Text>
             <View style={styles.personalInfoChildCol}>
               <Text style={styles.companyName}>{business.name}</Text>
               <Text style={styles.small}>{business.email}</Text>
@@ -51,7 +51,7 @@ export const InvoiceHeader: FC<InvoiceHeaderProps> = ({
         </View>
         <View style={[styles.column, styles.rightColBasis]}>
           <View style={styles.personalInfoCol}>
-            <Text style={[styles.h5, styles.labelOpa60]}>Bill To</Text>
+            <Text style={[styles.h5, styles.labelOpa65]}>Bill To</Text>
             <View style={styles.personalInfoChildCol}>
               <Text style={styles.companyName}>{client.name}</Text>
               <Text style={styles.small}>{client.email}</Text>
@@ -73,7 +73,7 @@ const BaseInvoiceText = ({
 }) => (
   <View style={styles.baseInvoiceTextContainer}>
     <View style={styles.baseInvoiceTextLeftCol}>
-      <Text style={[styles.baseInvoiceTextLeftColText, styles.labelOpa60]}>
+      <Text style={[styles.baseInvoiceTextLeftColText, styles.labelOpa65]}>
         {label}
       </Text>
     </View>

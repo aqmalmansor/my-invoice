@@ -92,7 +92,7 @@ export const invoiceHeaderStyles = StyleSheet.create({
   baseInvoiceTextLeftColText: {
     fontSize: "12px",
   },
-  labelOpa60: {
+  labelOpa65: {
     opacity: 0.65,
   },
   baseInvoiceTextRightColText: {

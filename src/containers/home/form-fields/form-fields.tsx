@@ -14,12 +14,12 @@ import {
   initialFormValues,
   validationSchema,
 } from "../config";
+import { DEBUG } from "../../../lib/constants";
 
 export const FormFields: FC = () => {
-  const debugMode = true;
-  const initialValues = debugMode ? debugFormValues : initialFormValues;
+  const initialValues = DEBUG ? debugFormValues : initialFormValues;
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
@@ -28,13 +28,11 @@ export const FormFields: FC = () => {
       <Formik<FormValuesType>
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={() => setIsOpen(true)}
       >
-        {({ submitForm, isValid, dirty, resetForm, errors }) => (
+        {({ isValid, dirty, resetForm, errors }) => (
           <Form noValidate>
-            {isOpen && (
-              <PreviewPdfModal toggle={toggle} onSubmit={submitForm} />
-            )}
+            {isOpen && <PreviewPdfModal toggle={toggle} />}
             <InvoiceFields />
             <div className="grid grid-cols-2 gap-8">
               <div className="grid col-span-1">
@@ -46,7 +44,7 @@ export const FormFields: FC = () => {
             </div>
             <InvoiceItemsFields />
             <Debug
-              display={debugMode}
+              display={DEBUG}
               errors={errors}
               isValid={isValid}
               dirty={dirty}
@@ -60,11 +58,7 @@ export const FormFields: FC = () => {
               >
                 Reset
               </Button>
-              <Button
-                type="button"
-                onClick={() => setIsOpen(true)}
-                className="flex-grow min-w-[200px]"
-              >
+              <Button type="submit" className="flex-grow min-w-[200px]">
                 Preview PDF
               </Button>
             </Flex>

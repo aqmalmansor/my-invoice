@@ -1,9 +1,10 @@
 import { Button, Dialog, Flex } from "@radix-ui/themes";
 import { FC } from "react";
 
+import { Pdf } from "./pdf";
+
 type PreviewPdfModalProps = {
   toggle: () => void;
-  onSubmit: () => void;
 };
 
 export const PreviewPdfModal: FC<PreviewPdfModalProps> = (props) => {
@@ -19,8 +20,10 @@ export const PreviewPdfModal: FC<PreviewPdfModalProps> = (props) => {
             Review your invoice before generate to PDF
           </Dialog.Description>
         </div>
-        <div className="relative flex-1 flex flex-col self-stretch justify-between">
-          <div className="bg-green-200">PDF Container (To be added)</div>
+        <div className="relative flex-1 flex flex-col self-stretch justify-between gap-5">
+          <div id="pdf-preview" className="flex flex-grow flex-1 h-full">
+            <Pdf />
+          </div>
           <Flex gap="4" direction="row" wrap="wrap" justify="center">
             <Button
               variant="outline"
@@ -28,9 +31,6 @@ export const PreviewPdfModal: FC<PreviewPdfModalProps> = (props) => {
               onClick={() => props.toggle()}
             >
               Cancel
-            </Button>
-            <Button variant="solid" className="min-w-[100px]">
-              Generate PDF
             </Button>
           </Flex>
         </div>

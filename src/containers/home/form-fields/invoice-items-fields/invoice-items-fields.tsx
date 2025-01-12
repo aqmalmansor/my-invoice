@@ -1,15 +1,14 @@
 import { FieldArray, useFormikContext } from "formik";
-import { FC, Fragment, useCallback, useMemo } from "react";
+import { FC, Fragment, useMemo } from "react";
 import { Button, Flex, Separator, Text } from "@radix-ui/themes";
 import { v4 as uuidv4 } from "uuid";
 
 import { TextInput } from "../../../../components";
 import { defaultInvoiceItem, FormValuesType } from "../../config";
 import { DEFAULT_CURRENCY } from "../../../../lib/constants";
-import { formatCurrency } from "../../../../lib/utils";
-
 import { InvoiceItemsFooter } from "./invoice-items-footer";
 import { InvoiceConfig } from "./invoice-config";
+import { useCalculateInvoice } from "../hook";
 
 export const InvoiceItemsFields: FC = () => {
   const {
@@ -17,6 +16,9 @@ export const InvoiceItemsFields: FC = () => {
   } = useFormikContext<FormValuesType>();
 
   const currencyLabel = currency ?? DEFAULT_CURRENCY;
+
+  const { subTotalPrice, totalTaxPrice, totalPriceWithTax, formatPrice } =
+    useCalculateInvoice(invoiceItems, tax, currency);
 
   const invoiceItemsBody = useMemo(
     () => (
@@ -52,10 +54,7 @@ export const InvoiceItemsFields: FC = () => {
                     />
                   </div>
                   <Text align="center" className="pt-2">
-                    {formatCurrency(
-                      invoice.price * invoice.quantity,
-                      currencyLabel
-                    )}
+                    {formatPrice(invoice.price * invoice.quantity)}
                   </Text>
                   <Flex justify="center" className="pt-2">
                     <Button
@@ -92,7 +91,7 @@ export const InvoiceItemsFields: FC = () => {
         }}
       />
     ),
-    [currencyLabel, invoiceItems]
+    [currencyLabel, formatPrice, invoiceItems]
   );
 
   const invoiceItemsHeaders = useMemo(
@@ -118,22 +117,6 @@ export const InvoiceItemsFields: FC = () => {
     [currencyLabel]
   );
 
-  const subTotalPrice = useCallback(() => {
-    return invoiceItems.reduce((total, item) => {
-      return total + item.price * item.quantity;
-    }, 0);
-  }, [invoiceItems]);
-
-  const totalTaxPrice = useCallback(
-    () => (tax ? (subTotalPrice() * (tax ?? 0)) / 100 : 0),
-    [tax, subTotalPrice]
-  );
-
-  const totalPriceWithTax = useCallback(
-    () => subTotalPrice() + totalTaxPrice(),
-    [subTotalPrice, totalTaxPrice]
-  );
-
   return (
     <div className="my-3 w-full">
       <Text
@@ -150,20 +133,14 @@ export const InvoiceItemsFields: FC = () => {
       </div>
       <Separator size="4" my="5" />
       <div className="grid grid-cols-10 gap-4">
-        <InvoiceItemsFooter
-          label="Subtotal Amount"
-          value={formatCurrency(subTotalPrice(), currencyLabel)}
-        />
+        <InvoiceItemsFooter label="Subtotal Amount" value={subTotalPrice} />
         {tax && (
           <InvoiceItemsFooter
             label={`Tax (${tax ?? 1}%)`}
-            value={formatCurrency(totalTaxPrice(), currencyLabel)}
+            value={totalTaxPrice}
           />
         )}
-        <InvoiceItemsFooter
-          label="Total Amount"
-          value={formatCurrency(totalPriceWithTax(), currencyLabel)}
-        />
+        <InvoiceItemsFooter label="Total Amount" value={totalPriceWithTax} />
       </div>
     </div>
   );

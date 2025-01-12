@@ -27,7 +27,6 @@ export const BusinessFields: FC = () => {
           name="business.phone"
           label="Business Phone"
           helperText="Please enter your company phone number"
-          type="number"
         />
         <TextInput
           type="email"

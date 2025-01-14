@@ -3,9 +3,13 @@ import { FC, Fragment, useMemo } from "react";
 import { Button, Flex, Separator, Text } from "@radix-ui/themes";
 import { v4 as uuidv4 } from "uuid";
 
-import { TextInput } from "../../../../components";
+import { Select, TextInput } from "../../../../components";
 import { defaultInvoiceItem, FormValuesType } from "../../config";
-import { DEFAULT_CURRENCY } from "../../../../lib/constants";
+import {
+  DEBUG,
+  DEFAULT_CURRENCY,
+  QUANTITY_OPTIONS,
+} from "../../../../lib/constants";
 import { InvoiceItemsFooter } from "./invoice-items-footer";
 import { InvoiceConfig } from "./invoice-config";
 import { useCalculateInvoice } from "../hook";
@@ -37,12 +41,29 @@ export const InvoiceItemsFields: FC = () => {
                     />
                   </div>
                   <div className="grid col-span-2">
-                    <TextInput
-                      name={`invoiceItems[${index}].quantity`}
-                      placeholder="Quantity"
-                      helperText="Min amount is 1"
-                      type="number"
-                    />
+                    {!DEBUG ? (
+                      <TextInput
+                        name={`invoiceItems[${index}].quantity`}
+                        placeholder="Quantity"
+                        helperText="Min amount is 1"
+                        type="number"
+                      />
+                    ) : (
+                      <div className="flex text-justify flex-row items-start gap-1">
+                        <TextInput
+                          name={`invoiceItems[${index}].quantity`}
+                          placeholder="Quantity"
+                          helperText="Min amount is 1"
+                          type="number"
+                        />
+                        <Select
+                          placeholder="Suffix"
+                          helperText="Suffix"
+                          options={QUANTITY_OPTIONS}
+                          name={`invoiceItems[${index}].quantityUnit`}
+                        />
+                      </div>
+                    )}
                   </div>
                   <div className="grid col-span-2">
                     <TextInput

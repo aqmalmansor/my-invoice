@@ -15,6 +15,7 @@ interface SelectProps extends RadixSelect.RootProps {
   label?: string;
   helperText?: string;
   defaultValue?: string;
+  placeholder?: string;
   options: Option[];
 }
 
@@ -24,6 +25,7 @@ export const Select: FC<SelectProps> = ({
   helperText,
   options,
   defaultValue,
+  placeholder,
   ...props
 }) => {
   const { getFieldMeta, getFieldProps, getFieldHelpers } = useFormikContext();
@@ -54,10 +56,10 @@ export const Select: FC<SelectProps> = ({
       >
         <RadixSelect.Trigger
           variant="surface"
-          placeholder="Select an option"
+          placeholder={placeholder ?? "Select an option"}
           className={cn([
             getErrorInputStyle(hasFieldError),
-            "rounded-md px-3 py-5 border-2",
+            "rounded-md px-3 py-5 border-2 min-w-[80px]",
             hasFieldError
               ? "[box-shadow:inset_0_0_0_1.5px_rgb(300_100_100_/_var(--tw-bg-opacity,_1))]"
               : "[box-shadow:inset_0_0_0_1.5px_rgb(183_193_205_/_var(--tw-bg-opacity,_1))]",

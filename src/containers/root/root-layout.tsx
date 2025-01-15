@@ -2,7 +2,7 @@ import { Theme } from "@radix-ui/themes";
 import { Helmet } from "react-helmet";
 import { Outlet } from "react-router";
 
-import { Footer, Header } from "@app/components/globals";
+import { Footer, Header } from "@app/components";
 import { cn } from "@app/lib/utils";
 
 import { rootBackground } from "./config";

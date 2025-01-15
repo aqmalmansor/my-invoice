@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Text } from "@radix-ui/themes";
 
-import { TextArea, TextInput } from "../../../components";
+import { TextArea, TextInput } from "@app/components";
 
 export const CustomerFields: FC = () => {
   return (

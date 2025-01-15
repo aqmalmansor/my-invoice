@@ -1,11 +1,11 @@
-import { Page, View, Document, PDFViewer } from "@react-pdf/renderer";
 import { FC } from "react";
+import { Document, Page, PDFViewer, View } from "@react-pdf/renderer";
 import { useFormikContext } from "formik";
 
-import { styles } from "./config";
-import { Footer, InvoiceHeader, Table } from "./sections";
 import { FormValuesType } from "../../../config";
 import { useCalculateInvoice } from "../../hook";
+import { styles } from "./config";
+import { Footer, InvoiceHeader, Table } from "./sections";
 import { Notes } from "./sections/notes";
 
 export const Pdf: FC = () => {

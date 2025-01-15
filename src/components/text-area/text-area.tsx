@@ -1,11 +1,11 @@
+import { FC } from "react";
 import {
   Flex,
-  Text,
   TextArea as RadixTextArea,
   TextAreaProps as RadixTextAreaProps,
+  Text,
 } from "@radix-ui/themes";
 import { useFormikContext } from "formik";
-import { FC } from "react";
 
 import {
   cn,
@@ -13,7 +13,7 @@ import {
   getErrorInputStyle,
   getErrorLabelStyle,
   getErrorMessageStyle,
-} from "../../lib/utils";
+} from "@app/lib/utils";
 
 interface TextAreaProps extends RadixTextAreaProps {
   name: string;
@@ -34,7 +34,7 @@ export const TextArea: FC<TextAreaProps> = ({
 
   const { error, helperText: errorHelperText } = getErrorFieldProps(
     meta,
-    submitCount
+    submitCount,
   );
 
   const hasFieldError = !!(error && errorHelperText);

@@ -1,9 +1,9 @@
-import { Text, View } from "@react-pdf/renderer";
 import { FC } from "react";
+import { Text, View } from "@react-pdf/renderer";
 
-import { invoiceHeaderStyles as styles } from "./config";
-import { FormValuesType } from "../../../../config";
 import { formatDate } from "../../../../../../lib/utils";
+import { FormValuesType } from "../../../../config";
+import { invoiceHeaderStyles as styles } from "./config";
 
 type InvoiceHeaderProps = Omit<
   FormValuesType,

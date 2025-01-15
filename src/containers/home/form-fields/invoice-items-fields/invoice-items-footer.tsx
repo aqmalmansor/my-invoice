@@ -1,5 +1,5 @@
-import { Flex, Text } from "@radix-ui/themes";
 import { FC } from "react";
+import { Flex, Text } from "@radix-ui/themes";
 
 interface InvoiceItemsFooterProps {
   label: string;

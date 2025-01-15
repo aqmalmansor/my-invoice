@@ -1,7 +1,7 @@
-import { z } from "zod";
-import { toFormikValidationSchema } from "zod-formik-adapter";
 import { DateValueType } from "react-tailwindcss-datepicker";
 import { v4 as uuidv4 } from "uuid";
+import { z } from "zod";
+import { toFormikValidationSchema } from "zod-formik-adapter";
 
 import {
   ARRAY_CANNOT_BE_EMPTY_ERROR,
@@ -10,9 +10,9 @@ import {
   EMAIL_FIELD_ERROR,
   MINIMUM_VALUE_ERROR,
   REQUIRED_FIELD_ERROR,
-} from "../../lib/constants";
-import { InvoiceItem } from "../../lib/entities";
-import { nullableField } from "../../lib/utils";
+} from "@app/lib/constants";
+import { InvoiceItem } from "@app/lib/entities";
+import { nullableField } from "@app/lib/utils";
 
 export interface FormValuesType {
   invoiceNumber: Nullable<number>;
@@ -41,13 +41,13 @@ const singleDateSchema = () =>
     z.object({
       startDate: z.date({ required_error: REQUIRED_FIELD_ERROR }),
       endDate: z.date({ required_error: REQUIRED_FIELD_ERROR }),
-    })
+    }),
   );
 
 export const validationSchema = toFormikValidationSchema(
   z.object({
     invoiceNumber: nullableField(
-      z.number({ required_error: REQUIRED_FIELD_ERROR })
+      z.number({ required_error: REQUIRED_FIELD_ERROR }),
     ),
     issueDate: singleDateSchema(),
     dueDate: singleDateSchema(),
@@ -55,22 +55,22 @@ export const validationSchema = toFormikValidationSchema(
       logo: z.string().nullable().optional(),
       name: nullableField(z.string({ required_error: REQUIRED_FIELD_ERROR })),
       address: nullableField(
-        z.string({ required_error: REQUIRED_FIELD_ERROR })
+        z.string({ required_error: REQUIRED_FIELD_ERROR }),
       ),
       email: nullableField(
         z
           .string({ required_error: REQUIRED_FIELD_ERROR })
-          .email({ message: EMAIL_FIELD_ERROR })
+          .email({ message: EMAIL_FIELD_ERROR }),
       ),
       phone: nullableField(z.string({ required_error: REQUIRED_FIELD_ERROR })),
     }),
     client: z.object({
       name: nullableField(z.string({ required_error: REQUIRED_FIELD_ERROR })),
       address: nullableField(
-        z.string({ required_error: REQUIRED_FIELD_ERROR })
+        z.string({ required_error: REQUIRED_FIELD_ERROR }),
       ),
       email: nullableField(
-        z.string().email({ message: EMAIL_FIELD_ERROR }).optional()
+        z.string().email({ message: EMAIL_FIELD_ERROR }).optional(),
       ),
     }),
     invoiceItems: z
@@ -83,7 +83,7 @@ export const validationSchema = toFormikValidationSchema(
           quantity: z
             .number({ required_error: REQUIRED_FIELD_ERROR })
             .min(1, { message: MINIMUM_VALUE_ERROR(1) }),
-        })
+        }),
       )
       .nonempty({ message: ARRAY_CANNOT_BE_EMPTY_ERROR }),
     currency: nullableField(z.string({ required_error: REQUIRED_FIELD_ERROR })),
@@ -95,7 +95,7 @@ export const validationSchema = toFormikValidationSchema(
       .positive({ message: MINIMUM_VALUE_ERROR(0) })
       .nullable()
       .optional(),
-  })
+  }),
 );
 
 export const defaultInvoiceItem: InvoiceItem = {
@@ -152,5 +152,5 @@ export const debugFormValues: FormValuesType = Object.assign(
       address: "Client address, \nClient city, \nClient country",
       email: "client@email.com",
     },
-  }
+  },
 );

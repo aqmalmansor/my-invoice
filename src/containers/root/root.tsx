@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Theme } from "@radix-ui/themes";
 
-import { Home } from "../home";
+import { Home } from "@app/containers/home";
 
 export const Root: FC = () => {
   return (

@@ -1,8 +1,8 @@
-import { View, Text } from "@react-pdf/renderer";
 import { FC } from "react";
+import { Text, View } from "@react-pdf/renderer";
 
-import { footerStyles as styles } from "./config";
 import { DEBUG } from "../../../../../../lib/constants";
+import { footerStyles as styles } from "./config";
 
 // TODO: Add more sections
 // Signature

@@ -1,9 +1,9 @@
-import { Text, View } from "@react-pdf/renderer";
 import { FC } from "react";
+import { Text, View } from "@react-pdf/renderer";
 
-import { tableStyles as styles } from "./config";
-import type { useCalculateInvoice } from "../../../hook";
 import { FormValuesType } from "../../../../config";
+import type { useCalculateInvoice } from "../../../hook";
+import { tableStyles as styles } from "./config";
 
 type TableProps = Pick<FormValuesType, "invoiceItems" | "tax"> &
   ReturnType<typeof useCalculateInvoice>;

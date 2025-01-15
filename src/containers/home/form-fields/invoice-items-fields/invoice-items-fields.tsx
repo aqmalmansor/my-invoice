@@ -1,18 +1,18 @@
-import { FieldArray, useFormikContext } from "formik";
 import { FC, Fragment, useMemo } from "react";
 import { Button, Flex, Separator, Text } from "@radix-ui/themes";
+import { FieldArray, useFormikContext } from "formik";
 import { v4 as uuidv4 } from "uuid";
 
 import { Select, TextInput } from "../../../../components";
-import { defaultInvoiceItem, FormValuesType } from "../../config";
 import {
   DEBUG,
   DEFAULT_CURRENCY,
   QUANTITY_OPTIONS,
 } from "../../../../lib/constants";
-import { InvoiceItemsFooter } from "./invoice-items-footer";
-import { InvoiceConfig } from "./invoice-config";
+import { defaultInvoiceItem, FormValuesType } from "../../config";
 import { useCalculateInvoice } from "../hook";
+import { InvoiceConfig } from "./invoice-config";
+import { InvoiceItemsFooter } from "./invoice-items-footer";
 
 export const InvoiceItemsFields: FC = () => {
   const {
@@ -99,7 +99,7 @@ export const InvoiceItemsFields: FC = () => {
                 onClick={() =>
                   insert(
                     invoiceItems.length,
-                    Object.assign({}, defaultInvoiceItem, { id: uuidv4() })
+                    Object.assign({}, defaultInvoiceItem, { id: uuidv4() }),
                   )
                 }
               >
@@ -112,7 +112,7 @@ export const InvoiceItemsFields: FC = () => {
         }}
       />
     ),
-    [currencyLabel, formatPrice, invoiceItems]
+    [currencyLabel, formatPrice, invoiceItems],
   );
 
   const invoiceItemsHeaders = useMemo(
@@ -135,7 +135,7 @@ export const InvoiceItemsFields: FC = () => {
         </Text>
       </>
     ),
-    [currencyLabel]
+    [currencyLabel],
   );
 
   return (

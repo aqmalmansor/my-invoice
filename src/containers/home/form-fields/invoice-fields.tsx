@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Text } from "@radix-ui/themes";
 
-import { DatePicker, TextInput } from "../../../components";
+import { DatePicker, TextInput } from "@app/components";
 
 export const InvoiceFields: FC = () => {
   return (

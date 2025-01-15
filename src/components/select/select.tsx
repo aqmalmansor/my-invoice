@@ -2,13 +2,13 @@ import { FC } from "react";
 import { Flex, Select as RadixSelect, Text } from "@radix-ui/themes";
 import { useFormikContext } from "formik";
 
-import { Option } from "../../lib/entities";
+import { Option } from "@app/lib/entities";
 import {
   cn,
   getErrorInputStyle,
   getErrorLabelStyle,
   getErrorMessageStyle,
-} from "../../lib/utils";
+} from "@app/lib/utils";
 
 interface SelectProps extends RadixSelect.RootProps {
   name: string;

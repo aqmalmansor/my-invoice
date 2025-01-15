@@ -1,20 +1,21 @@
-import { Formik, Form } from "formik";
 import { FC, useState } from "react";
 import { Button, Flex } from "@radix-ui/themes";
+import { Form, Formik } from "formik";
 
-import { Debug } from "./debug";
-import { BusinessFields } from "./business-fields";
-import { CustomerFields } from "./customer-fields";
-import { InvoiceFields } from "./invoice-fields";
-import { InvoiceItemsFields } from "./invoice-items-fields";
-import { PreviewPdfModal } from "./preview-pdf-modal";
+import { DEBUG } from "@app/lib/constants";
+
 import {
   debugFormValues,
   FormValuesType,
   initialFormValues,
   validationSchema,
 } from "../config";
-import { DEBUG } from "../../../lib/constants";
+import { BusinessFields } from "./business-fields";
+import { CustomerFields } from "./customer-fields";
+import { Debug } from "./debug";
+import { InvoiceFields } from "./invoice-fields";
+import { InvoiceItemsFields } from "./invoice-items-fields";
+import { PreviewPdfModal } from "./preview-pdf-modal";
 
 export const FormFields: FC = () => {
   const initialValues = DEBUG ? debugFormValues : initialFormValues;

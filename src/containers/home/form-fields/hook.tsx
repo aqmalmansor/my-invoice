@@ -1,13 +1,14 @@
 import { useCallback } from "react";
 
+import { DEFAULT_CURRENCY } from "@app/lib/constants";
+import { formatCurrency, getCurrencyAffix } from "@app/lib/utils";
+
 import { FormValuesType } from "../config";
-import { DEFAULT_CURRENCY } from "../../../lib/constants";
-import { formatCurrency, getCurrencyAffix } from "../../../lib/utils";
 
 export const useCalculateInvoice = (
   invoiceItems: FormValuesType["invoiceItems"],
   tax: FormValuesType["tax"],
-  currencyCode: FormValuesType["currency"]
+  currencyCode: FormValuesType["currency"],
 ) => {
   const curr = currencyCode ?? DEFAULT_CURRENCY;
 
@@ -19,12 +20,12 @@ export const useCalculateInvoice = (
 
   const totalTaxPrice = useCallback(
     () => (tax ? (subTotalPrice() * (tax ?? 0)) / 100 : 0),
-    [tax, subTotalPrice]
+    [tax, subTotalPrice],
   );
 
   const totalPriceWithTax = useCallback(
     () => subTotalPrice() + totalTaxPrice(),
-    [subTotalPrice, totalTaxPrice]
+    [subTotalPrice, totalTaxPrice],
   );
 
   const formatPrice = (price: number, hideCurrency?: boolean) =>

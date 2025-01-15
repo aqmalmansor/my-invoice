@@ -1,5 +1,6 @@
 import { type FieldMetaProps } from "formik";
-import { ZodTypeAny, z } from "zod";
+import { z, ZodTypeAny } from "zod";
+
 import { REQUIRED_FIELD_ERROR } from "../constants";
 
 interface ErrorFieldProps {
@@ -10,7 +11,7 @@ interface ErrorFieldProps {
 
 export const nullableField = <T extends ZodTypeAny>(
   schema: T,
-  message = REQUIRED_FIELD_ERROR
+  message = REQUIRED_FIELD_ERROR,
 ) => {
   return schema.nullable().transform((val, ctx) => {
     if (val === null) {
@@ -29,7 +30,7 @@ export const nullableField = <T extends ZodTypeAny>(
 
 export const getErrorFieldProps = (
   meta?: FieldMetaProps<unknown>,
-  submitCount?: number
+  submitCount?: number,
 ): ErrorFieldProps =>
   meta && (meta.touched || submitCount) && meta.error !== undefined
     ? {

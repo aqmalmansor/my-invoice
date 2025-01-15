@@ -1,6 +1,6 @@
+import { FC } from "react";
 import { Flex, Text, TextField } from "@radix-ui/themes";
 import { useFormikContext } from "formik";
-import { FC } from "react";
 
 import {
   cn,
@@ -8,7 +8,7 @@ import {
   getErrorInputStyle,
   getErrorLabelStyle,
   getErrorMessageStyle,
-} from "../../lib/utils";
+} from "@app/lib/utils";
 
 interface TextInputProps extends TextField.RootProps {
   name: string;
@@ -31,7 +31,7 @@ export const TextInput: FC<TextInputProps> = ({
 
   const { error, helperText: errorHelperText } = getErrorFieldProps(
     meta,
-    submitCount
+    submitCount,
   );
 
   const hasFieldError = !!(error && errorHelperText);

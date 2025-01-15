@@ -5,7 +5,7 @@ export const mapEnumToOptions = <T>(enums: T): Option[] =>
     ([key, value]) => ({
       value: key,
       label: value as string,
-    })
+    }),
   );
 
 export * from "./format";

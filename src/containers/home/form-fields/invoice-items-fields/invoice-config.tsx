@@ -2,9 +2,9 @@ import { FC } from "react";
 import { Button, Text } from "@radix-ui/themes";
 import { useFormikContext } from "formik";
 
-import { FormValuesType } from "../../config";
 import { Select, TextInput } from "../../../../components";
 import { currencies } from "../../../../lib/constants";
+import { FormValuesType } from "../../config";
 
 export const InvoiceConfig: FC = () => {
   const { setFieldValue } = useFormikContext<FormValuesType>();

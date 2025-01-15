@@ -1,6 +1,6 @@
+import { FC } from "react";
 import { Flex } from "@radix-ui/themes";
 import { FormikErrors } from "formik";
-import { FC } from "react";
 
 import { FormValuesType } from "../config";
 

@@ -14,7 +14,7 @@ export const getCurrencyAffix = (currency: string): string => {
 export const formatCurrency = (
   value: number,
   currency: string,
-  hideCurrency = false
+  hideCurrency = false,
 ): string => {
   const affix = getCurrencyAffix(currency);
 

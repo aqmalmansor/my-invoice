@@ -23,7 +23,7 @@ export const InvoiceFields: FC = () => {
         <DatePicker
           name="invoiceDate"
           label="Issue Date and Due Date"
-          helperText="Please enter your invoice issue date"
+          helperText="Please enter your invoice issue and due date"
         />
         <TextInput
           name="invoiceRef"

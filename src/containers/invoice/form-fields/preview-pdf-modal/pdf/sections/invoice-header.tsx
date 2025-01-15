@@ -46,6 +46,7 @@ export const InvoiceHeader: FC<InvoiceHeaderProps> = ({
               <Text style={styles.companyName}>{business.name}</Text>
               <Text style={styles.small}>{business.email}</Text>
               <Text style={styles.small}>{business.phone}</Text>
+              <Text style={styles.small}>{business.address}</Text>
             </View>
           </View>
         </View>

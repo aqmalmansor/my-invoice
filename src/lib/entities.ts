@@ -11,6 +11,7 @@ export interface Option {
 }
 
 export enum QuantityEnum {
+  NULL = "",
   PCS = "piece(s)",
   LT = "litre(s)",
   ML = "mililiter(s)",

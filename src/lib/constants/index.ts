@@ -3,7 +3,7 @@ import { mapEnumToOptions } from "../utils";
 
 export const DEFAULT_MYR_SST = 6;
 
-export const DEBUG = true;
+export const DEBUG = false;
 
 export const QUANTITY_OPTIONS: Option[] = mapEnumToOptions(QuantityEnum);
 

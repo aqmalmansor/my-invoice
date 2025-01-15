@@ -102,7 +102,7 @@ export const defaultInvoiceItem: InvoiceItem = {
   id: uuidv4(),
   name: "",
   quantity: 1,
-  price: 0,
+  price: 1,
 };
 
 export const initialFormValues: FormValuesType = {

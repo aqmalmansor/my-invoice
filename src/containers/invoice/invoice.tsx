@@ -5,13 +5,13 @@ import { FormFields } from "./form-fields";
 
 export const Invoice: FC = () => {
   return (
-    <div className="py-5 md-px-5 px-3">
+    <>
       <Flex align="center" justify="center">
         <Text weight="bold" size="6" className="pt-3 pb-2 mb-3 text-center">
           My Invoice Generator
         </Text>
       </Flex>
       <FormFields />
-    </div>
+    </>
   );
 };

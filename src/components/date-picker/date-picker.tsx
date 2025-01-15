@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { Flex, Text } from "@radix-ui/themes";
-import dayjs from "dayjs";
 import { useFormikContext } from "formik";
 import TailwindDatePicker, {
   DatepickerType,
@@ -8,6 +7,7 @@ import TailwindDatePicker, {
 
 import {
   cn,
+  getErrorFieldProps,
   getErrorInputStyle,
   getErrorLabelStyle,
   getErrorMessageStyle,
@@ -24,10 +24,10 @@ export const DatePicker: FC<DatePickerProps> = ({
   name,
   label,
   helperText,
-  defaultValue,
   ...props
 }) => {
-  const { getFieldMeta, getFieldProps, getFieldHelpers } = useFormikContext();
+  const { submitCount, getFieldMeta, getFieldProps, getFieldHelpers } =
+    useFormikContext();
 
   const [meta, field, helpers] = [
     getFieldMeta(name),
@@ -35,7 +35,12 @@ export const DatePicker: FC<DatePickerProps> = ({
     getFieldHelpers(name),
   ];
 
-  const hasFieldError = !!meta.error && !!meta.touched;
+  const { error, helperText: errorHelperText } = getErrorFieldProps(
+    meta,
+    submitCount,
+  );
+
+  const hasFieldError = !!(error && errorHelperText);
 
   return (
     <Flex direction="column" gap="1" mb="2">
@@ -46,8 +51,6 @@ export const DatePicker: FC<DatePickerProps> = ({
         </Text>
       )}
       <TailwindDatePicker
-        asSingle
-        useRange={false}
         primaryColor="blue"
         displayFormat="DD/MM/YYYY"
         inputClassName={(cls) => {
@@ -64,12 +67,10 @@ export const DatePicker: FC<DatePickerProps> = ({
             "border-2 py-2 px-3",
           ]);
         }}
-        value={field.value === undefined ? defaultValue : field.value}
+        value={field.value ?? null}
         onChange={(value) => {
-          const dateValue = value?.startDate;
-          const isDateInputValid = dateValue && dayjs(dateValue).isValid();
-
-          helpers.setValue(isDateInputValid ? value : null);
+          helpers.setValue(value);
+          helpers.setTouched(true);
         }}
       />
       {(hasFieldError || helperText) && (

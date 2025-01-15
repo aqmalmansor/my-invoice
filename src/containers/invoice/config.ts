@@ -1,7 +1,6 @@
 import { DateValueType } from "react-tailwindcss-datepicker";
 import { v4 as uuidv4 } from "uuid";
-import { z } from "zod";
-import { toFormikValidationSchema } from "zod-formik-adapter";
+import * as yup from "yup";
 
 import {
   ARRAY_CANNOT_BE_EMPTY_ERROR,
@@ -12,12 +11,11 @@ import {
   REQUIRED_FIELD_ERROR,
 } from "@app/lib/constants";
 import { InvoiceItem } from "@app/lib/entities";
-import { nullableField } from "@app/lib/utils";
 
 export interface FormValuesType {
-  invoiceNumber: Nullable<number>;
-  issueDate: DateValueType;
-  dueDate: DateValueType;
+  invoiceNumber: Nullable<string>;
+  invoiceRef: Nullable<string>;
+  invoiceDate: DateValueType;
   business: {
     logo: Nullable<string>;
     name: Nullable<string>;
@@ -36,69 +34,52 @@ export interface FormValuesType {
   notes: string[];
 }
 
-const singleDateSchema = () =>
-  nullableField(
-    z.object({
-      startDate: z.date({ required_error: REQUIRED_FIELD_ERROR }),
-      endDate: z.date({ required_error: REQUIRED_FIELD_ERROR }),
-    }),
-  );
+const singleDateSchema = () => yup.date().nullable();
 
-export const validationSchema = toFormikValidationSchema(
-  z.object({
-    invoiceNumber: nullableField(
-      z.number({ required_error: REQUIRED_FIELD_ERROR }),
-    ),
-    issueDate: singleDateSchema(),
-    dueDate: singleDateSchema(),
-    business: z.object({
-      logo: z.string().nullable().optional(),
-      name: nullableField(z.string({ required_error: REQUIRED_FIELD_ERROR })),
-      address: nullableField(
-        z.string({ required_error: REQUIRED_FIELD_ERROR }),
-      ),
-      email: z
-        .string()
-        .email({ message: EMAIL_FIELD_ERROR })
-        .optional()
-        .or(z.literal(null)),
-      phone: nullableField(z.string({ required_error: REQUIRED_FIELD_ERROR })),
-    }),
-    client: z.object({
-      name: nullableField(z.string({ required_error: REQUIRED_FIELD_ERROR })),
-      address: nullableField(
-        z.string({ required_error: REQUIRED_FIELD_ERROR }),
-      ),
-      email: z
-        .string()
-        .email({ message: EMAIL_FIELD_ERROR })
-        .optional()
-        .or(z.literal(null)),
-    }),
-    invoiceItems: z
-      .array(
-        z.object({
-          name: z.string({ required_error: REQUIRED_FIELD_ERROR }),
-          price: z
-            .number({ required_error: REQUIRED_FIELD_ERROR })
-            .positive({ message: MINIMUM_VALUE_ERROR(0) }),
-          quantity: z
-            .number({ required_error: REQUIRED_FIELD_ERROR })
-            .min(1, { message: MINIMUM_VALUE_ERROR(1) }),
-        }),
-      )
-      .nonempty({ message: ARRAY_CANNOT_BE_EMPTY_ERROR }),
-    currency: nullableField(z.string({ required_error: REQUIRED_FIELD_ERROR })),
-    notes: z
-      .array(z.string({ required_error: REQUIRED_FIELD_ERROR }))
-      .optional(),
-    tax: z
-      .number()
-      .positive({ message: MINIMUM_VALUE_ERROR(0) })
-      .nullable()
-      .optional(),
+export const validationSchema = yup.object({
+  invoiceNumber: yup.string().nullable().required(REQUIRED_FIELD_ERROR),
+  invoiceRef: yup.string().nullable().optional(),
+  invoiceDate: yup
+    .object({
+      startDate: singleDateSchema(),
+      endDate: singleDateSchema(),
+    })
+    .nullable(),
+  business: yup.object({
+    logo: yup.string().nullable().optional(),
+    name: yup.string().nullable().required(REQUIRED_FIELD_ERROR),
+    address: yup.string().nullable().required(REQUIRED_FIELD_ERROR),
+    email: yup.string().email(EMAIL_FIELD_ERROR).nullable().optional(),
+    phone: yup.string().nullable().required(REQUIRED_FIELD_ERROR),
   }),
-);
+  client: yup.object({
+    name: yup.string().nullable().required(REQUIRED_FIELD_ERROR),
+    address: yup.string().nullable().required(REQUIRED_FIELD_ERROR),
+    email: yup.string().email(EMAIL_FIELD_ERROR).nullable().optional(),
+  }),
+  invoiceItems: yup
+    .array(
+      yup.object({
+        name: yup.string().nullable().required(REQUIRED_FIELD_ERROR),
+        price: yup
+          .number()
+          .nullable()
+          .required(REQUIRED_FIELD_ERROR)
+          .positive(MINIMUM_VALUE_ERROR(0)),
+        quantity: yup
+          .number()
+          .nullable()
+          .required(REQUIRED_FIELD_ERROR)
+          .min(1, { message: MINIMUM_VALUE_ERROR(1) }),
+      }),
+    )
+    .min(1, { message: ARRAY_CANNOT_BE_EMPTY_ERROR }),
+  currency: yup.string().nullable().required(REQUIRED_FIELD_ERROR),
+  notes: yup
+    .array(yup.string().nullable().required(REQUIRED_FIELD_ERROR))
+    .optional(),
+  tax: yup.number().positive(MINIMUM_VALUE_ERROR(0)).nullable().optional(),
+});
 
 export const defaultInvoiceItem: InvoiceItem = {
   id: uuidv4(),
@@ -109,8 +90,11 @@ export const defaultInvoiceItem: InvoiceItem = {
 
 export const initialFormValues: FormValuesType = {
   invoiceNumber: null,
-  issueDate: null,
-  dueDate: null,
+  invoiceRef: null,
+  invoiceDate: {
+    startDate: null,
+    endDate: null,
+  },
   business: {
     logo: null,
     name: null,
@@ -133,15 +117,7 @@ export const debugFormValues: FormValuesType = Object.assign(
   {},
   initialFormValues,
   {
-    invoiceNumber: 260995,
-    issueDate: {
-      startDate: new Date(),
-      endDate: new Date(),
-    },
-    dueDate: {
-      startDate: new Date(),
-      endDate: new Date(),
-    },
+    invoiceNumber: "260995",
     business: {
       logo: null,
       name: "My company",

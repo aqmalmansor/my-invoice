@@ -14,8 +14,8 @@ export const InvoiceHeader: FC<InvoiceHeaderProps> = ({
   business,
   client,
   invoiceNumber,
-  issueDate,
-  dueDate,
+  invoiceDate,
+  invoiceRef,
 }) => {
   return (
     <View>
@@ -27,13 +27,16 @@ export const InvoiceHeader: FC<InvoiceHeaderProps> = ({
           <Text>INVOICE</Text>
           <View style={styles.baseInvoiceContainer}>
             <BaseInvoiceText label="ID:" value={`${invoiceNumber}`} />
+            {invoiceRef && (
+              <BaseInvoiceText label="Reference:" value={`${invoiceRef}`} />
+            )}
             <BaseInvoiceText
               label="Issued Date:"
-              value={`${formatDate(issueDate?.startDate)}`}
+              value={`${formatDate(invoiceDate?.startDate)}`}
             />
             <BaseInvoiceText
               label="Due Date:"
-              value={`${formatDate(dueDate?.startDate)}`}
+              value={`${formatDate(invoiceDate?.endDate)}`}
             />
           </View>
         </View>

@@ -18,19 +18,17 @@ export const InvoiceFields: FC = () => {
           name="invoiceNumber"
           label="Invoice Number"
           helperText="Please enter your invoice number"
-          type="number"
+          required
         />
         <DatePicker
-          name="issueDate"
-          label="Issue Date"
+          name="invoiceDate"
+          label="Issue Date and Due Date"
           helperText="Please enter your invoice issue date"
-          required
         />
-        <DatePicker
-          name="dueDate"
-          label="Due Date"
-          helperText="Please enter your invoice due date"
-          required
+        <TextInput
+          name="invoiceRef"
+          label="Invoice Reference"
+          helperText="Please enter your invoice reference number"
         />
       </div>
     </>

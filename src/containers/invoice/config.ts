@@ -57,11 +57,11 @@ export const validationSchema = toFormikValidationSchema(
       address: nullableField(
         z.string({ required_error: REQUIRED_FIELD_ERROR }),
       ),
-      email: nullableField(
-        z
-          .string({ required_error: REQUIRED_FIELD_ERROR })
-          .email({ message: EMAIL_FIELD_ERROR }),
-      ),
+      email: z
+        .string()
+        .email({ message: EMAIL_FIELD_ERROR })
+        .optional()
+        .or(z.literal(null)),
       phone: nullableField(z.string({ required_error: REQUIRED_FIELD_ERROR })),
     }),
     client: z.object({
@@ -69,9 +69,11 @@ export const validationSchema = toFormikValidationSchema(
       address: nullableField(
         z.string({ required_error: REQUIRED_FIELD_ERROR }),
       ),
-      email: nullableField(
-        z.string().email({ message: EMAIL_FIELD_ERROR }).optional(),
-      ),
+      email: z
+        .string()
+        .email({ message: EMAIL_FIELD_ERROR })
+        .optional()
+        .or(z.literal(null)),
     }),
     invoiceItems: z
       .array(

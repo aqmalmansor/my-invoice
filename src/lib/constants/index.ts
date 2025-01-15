@@ -1,15 +1,11 @@
 import { Option, QuantityEnum } from "../entities";
+import { mapEnumToOptions } from "../utils";
 
 export const DEFAULT_MYR_SST = 6;
 
-export const DEBUG = false;
+export const DEBUG = true;
 
-export const QUANTITY_OPTIONS: Option[] = Object.entries(QuantityEnum).map(
-  ([key, value]) => ({
-    value: key,
-    label: value,
-  })
-) as Option[];
+export const QUANTITY_OPTIONS: Option[] = mapEnumToOptions(QuantityEnum);
 
 export * from "./currencies";
 export * from "./error-message";

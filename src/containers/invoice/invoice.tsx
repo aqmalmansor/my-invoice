@@ -3,7 +3,7 @@ import { Flex, Text } from "@radix-ui/themes";
 
 import { FormFields } from "./form-fields";
 
-export const Home: FC = () => {
+export const Invoice: FC = () => {
   return (
     <div className="py-5 md-px-5 px-3">
       <Flex align="center" justify="center">

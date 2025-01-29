@@ -75,6 +75,20 @@ export const invoiceHeaderStyles = StyleSheet.create({
     width: "100%",
     marginBottom: "16px",
   },
+  logoCol: {
+    display: "flex",
+    height: "100%",
+    width: "80px",
+    position: "relative",
+  },
+  logo: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    objectFit: "fill",
+  },
   column: {
     display: "flex",
     flexDirection: "column",

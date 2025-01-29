@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Text } from "@radix-ui/themes";
 
-import { TextArea, TextInput } from "@app/components";
+import { FileInput, TextArea, TextInput } from "@app/components";
 
 export const BusinessFields: FC = () => {
   return (
@@ -42,6 +42,9 @@ export const BusinessFields: FC = () => {
           label="Business Address"
           helperText="Please enter your company address"
         />
+      </div>
+      <div className="grid col-span-2">
+        <FileInput name="business.logo" label="Business Logo" />
       </div>
     </>
   );

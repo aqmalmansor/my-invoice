@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Text, View } from "@react-pdf/renderer";
+import { Image, Text, View } from "@react-pdf/renderer";
 
 import { formatDate } from "@app/lib/utils";
 
@@ -21,8 +21,8 @@ export const InvoiceHeader: FC<InvoiceHeaderProps> = ({
   return (
     <View>
       <View style={styles.container}>
-        <View style={styles.column}>
-          {business.logo && <Text>{business.logo}</Text>}
+        <View style={[styles.column, styles.logoCol]}>
+          {business.logo && <Image src={business.logo} style={styles.logo} />}
         </View>
         <View style={[styles.column, styles.rightColBasis, { gap: "10px" }]}>
           <Text>INVOICE</Text>

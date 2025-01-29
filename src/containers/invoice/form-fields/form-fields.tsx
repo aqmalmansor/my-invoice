@@ -40,7 +40,7 @@ export const FormFields: FC = () => {
               <div className="grid col-span-1">
                 <BusinessFields />
               </div>
-              <div className="grid col-span-1">
+              <div className="grid col-span-1 self-start">
                 <CustomerFields />
               </div>
             </div>

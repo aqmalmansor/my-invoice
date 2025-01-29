@@ -22,7 +22,9 @@ export const InvoiceHeader: FC<InvoiceHeaderProps> = ({
     <View>
       <View style={styles.container}>
         <View style={[styles.column, styles.logoCol]}>
-          {business.logo && <Image src={business.logo} style={styles.logo} />}
+          {business.logo && (
+            <Image src={business.logo} style={styles.logo} debug />
+          )}
         </View>
         <View style={[styles.column, styles.rightColBasis, { gap: "10px" }]}>
           <Text>INVOICE</Text>

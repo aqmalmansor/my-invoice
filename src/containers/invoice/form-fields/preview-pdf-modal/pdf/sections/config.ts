@@ -77,17 +77,14 @@ export const invoiceHeaderStyles = StyleSheet.create({
   },
   logoCol: {
     display: "flex",
-    height: "100%",
-    width: "80px",
     position: "relative",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
   },
   logo: {
-    position: "absolute",
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    objectFit: "fill",
+    objectFit: "contain",
+    height: "80px",
+    maxWidth: "150px",
   },
   column: {
     display: "flex",

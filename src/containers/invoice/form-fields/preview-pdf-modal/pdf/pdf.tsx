@@ -10,7 +10,7 @@ import { Notes } from "./sections/notes";
 
 export const Pdf: FC = () => {
   const {
-    values: { invoiceItems, currency, tax, ...value },
+    values: { invoiceItems, currency, tax, paymentInformation, ...value },
   } = useFormikContext<FormValuesType>();
 
   const invoiceDetails = useCalculateInvoice(invoiceItems, tax, currency);
@@ -28,8 +28,8 @@ export const Pdf: FC = () => {
             <Table invoiceItems={invoiceItems} tax={tax} {...invoiceDetails} />
           </View>
           <View style={styles.section}>
+            <Footer paymentInformation={paymentInformation} />
             {value.notes?.length > 0 && <Notes notes={value.notes} />}
-            <Footer />
           </View>
         </Page>
       </Document>

@@ -1,13 +1,14 @@
 import { FC } from "react";
 import { Text, View } from "@react-pdf/renderer";
 
-import { formatDate } from "../../../../../../lib/utils";
+import { formatDate } from "@app/lib/utils";
+
 import { FormValuesType } from "../../../../config";
 import { invoiceHeaderStyles as styles } from "./config";
 
 type InvoiceHeaderProps = Omit<
   FormValuesType,
-  "invoiceItems" | "currency" | "tax"
+  "invoiceItems" | "currency" | "tax" | "paymentInformation"
 >;
 
 export const InvoiceHeader: FC<InvoiceHeaderProps> = ({

@@ -15,6 +15,7 @@ import { CustomerFields } from "./customer-fields";
 import { Debug } from "./debug";
 import { InvoiceFields } from "./invoice-fields";
 import { InvoiceItemsFields } from "./invoice-items-fields";
+import { PaymentInformationFields } from "./payment-information-fields";
 import { PreviewPdfModal } from "./preview-pdf-modal";
 
 export const FormFields: FC = () => {
@@ -43,6 +44,7 @@ export const FormFields: FC = () => {
                 <CustomerFields />
               </div>
             </div>
+            <PaymentInformationFields />
             <InvoiceItemsFields />
             <Debug
               display={DEBUG}

@@ -10,7 +10,7 @@ import {
   MINIMUM_VALUE_ERROR,
   REQUIRED_FIELD_ERROR,
 } from "@app/lib/constants";
-import { InvoiceItem } from "@app/lib/entities";
+import { InvoiceItem, PaymentInformation } from "@app/lib/entities";
 
 export interface FormValuesType {
   invoiceNumber: Nullable<string>;
@@ -32,6 +32,7 @@ export interface FormValuesType {
   currency: Nullable<string>;
   tax: Nullable<number>;
   notes: string[];
+  paymentInformation: Nullable<PaymentInformation>;
 }
 
 const singleDateSchema = () => yup.date().nullable();
@@ -79,6 +80,18 @@ export const validationSchema = yup.object({
     .array(yup.string().nullable().required(REQUIRED_FIELD_ERROR))
     .optional(),
   tax: yup.number().positive(MINIMUM_VALUE_ERROR(0)).nullable().optional(),
+  paymentInformation: yup
+    .object({
+      bankName: yup.string().nullable().required(REQUIRED_FIELD_ERROR),
+      bankAccHolderName: yup.string().nullable().required(REQUIRED_FIELD_ERROR),
+      bankAccHolderNumber: yup
+        .number()
+        .nullable()
+        .required(REQUIRED_FIELD_ERROR),
+      swiftCode: yup.string().nullable(),
+    })
+    .nullable()
+    .optional(),
 });
 
 export const defaultInvoiceItem: InvoiceItem = {
@@ -111,6 +124,7 @@ export const initialFormValues: FormValuesType = {
   currency: DEFAULT_CURRENCY,
   notes: [],
   tax: DEFAULT_MYR_SST,
+  paymentInformation: null,
 };
 
 export const debugFormValues: FormValuesType = Object.assign(

@@ -1,28 +1,42 @@
 import { FC } from "react";
 import { Text, View } from "@react-pdf/renderer";
 
-import { DEBUG } from "../../../../../../lib/constants";
+import { FormValuesType } from "@app/containers/invoice";
+
 import { footerStyles as styles } from "./config";
 
-// TODO: Add more sections
-// Signature
-// Bank information
+interface FooterProps {
+  paymentInformation: FormValuesType["paymentInformation"];
+}
 
-export const Footer: FC = () => (
+export const Footer: FC<FooterProps> = ({ paymentInformation }) => (
   <View
     style={[
       styles.footer,
-      { justifyContent: DEBUG ? "space-between" : "flex-end" },
+      { justifyContent: paymentInformation ? "space-between" : "flex-end" },
     ]}
   >
-    {DEBUG && (
+    {!!paymentInformation && (
       <View style={styles.paymentCol}>
-        <Text style={[styles.title]}>Payment Method</Text>
-        <View style={styles.paymentCol}>
-          <Text style={[styles.title]}>Bank Name</Text>
-          <Text style={[styles.title]}>Account Name: Acc Name</Text>
-          <Text style={[styles.title]}>Account Number: Acc number</Text>
-        </View>
+        <>
+          <Text style={[styles.title]}>Payment Method (Bank Transfer)</Text>
+          <View style={styles.paymentCol}>
+            <Text style={[styles.paymentText]}>
+              Bank: {paymentInformation?.bankName || "-"}
+            </Text>
+            {paymentInformation?.swiftCode && (
+              <Text style={[styles.paymentText]}>
+                Swift Code: {paymentInformation?.swiftCode || "-"}
+              </Text>
+            )}
+            <Text style={[styles.paymentText]}>
+              Account Name: {paymentInformation?.bankAccHolderName || "-"}
+            </Text>
+            <Text style={[styles.paymentText]}>
+              Account Number: {paymentInformation?.bankAccHolderNumber || "-"}
+            </Text>
+          </View>
+        </>
       </View>
     )}
     <View style={styles.signatureCol}>

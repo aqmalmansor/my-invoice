@@ -13,8 +13,19 @@ const setFlexBasis = (basis: string) =>
 export const notesStyles = StyleSheet.create({
   container: {
     display: "flex",
+    width: "100%",
     flexDirection: "column",
     paddingHorizontal: "10px",
+    gap: 4,
+    marginTop: 12,
+  },
+  title: {
+    fontSize: 12,
+    paddingBottom: 4,
+    borderBottom: "1px solid #000",
+  },
+  note: {
+    fontSize: "10px",
   },
 });
 
@@ -41,6 +52,9 @@ export const footerStyles = StyleSheet.create({
   },
   signatureText: {
     textAlign: "center",
+    fontSize: "10px",
+  },
+  paymentText: {
     fontSize: "10px",
   },
   paymentCol: {
@@ -153,10 +167,10 @@ export const tableStyles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     width: "100%",
-    minHeight: "300px",
+    minHeight: "250px",
     paddingVertical: "6px",
     borderBottom: "1px solid #000",
-    marginBottom: "6px",
+    marginBottom: 6,
   },
   idColumn: setFlexBasis("30px"),
   qtyColumn: setFlexBasis("90px"),

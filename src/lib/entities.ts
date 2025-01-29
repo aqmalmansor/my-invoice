@@ -21,3 +21,10 @@ export enum QuantityEnum {
   UNIT = "unit(s)",
   H = "hour(s)",
 }
+
+export interface PaymentInformation {
+  bankName: Nullable<string>;
+  bankAccHolderName: Nullable<string>;
+  bankAccHolderNumber: Nullable<number>;
+  swiftCode?: Nullable<string>;
+}

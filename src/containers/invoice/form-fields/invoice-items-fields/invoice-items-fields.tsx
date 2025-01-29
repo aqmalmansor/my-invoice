@@ -11,6 +11,7 @@ import {
 } from "../../../../lib/constants";
 import { defaultInvoiceItem, FormValuesType } from "../../config";
 import { useCalculateInvoice } from "../hook";
+import { AdditionalNotesFields } from "./additional-notes-fields";
 import { InvoiceConfig } from "./invoice-config";
 import { InvoiceItemsFooter } from "./invoice-items-footer";
 
@@ -153,15 +154,25 @@ export const InvoiceItemsFields: FC = () => {
         {invoiceItemsBody}
       </div>
       <Separator size="4" my="5" />
-      <div className="grid grid-cols-10 gap-4">
-        <InvoiceItemsFooter label="Subtotal Amount" value={subTotalPrice} />
-        {tax && (
-          <InvoiceItemsFooter
-            label={`Tax (${tax ?? 1}%)`}
-            value={totalTaxPrice}
-          />
-        )}
-        <InvoiceItemsFooter label="Total Amount" value={totalPriceWithTax} />
+      <div className="grid grid-cols-12 gap-4">
+        <div className="grid col-span-6">
+          <AdditionalNotesFields />
+        </div>
+        <div className="grid col-span-6">
+          <div className="flex flex-col gap-4">
+            <InvoiceItemsFooter label="Subtotal Amount" value={subTotalPrice} />
+            {tax && (
+              <InvoiceItemsFooter
+                label={`Tax (${tax ?? 1}%)`}
+                value={totalTaxPrice}
+              />
+            )}
+            <InvoiceItemsFooter
+              label="Total Amount"
+              value={totalPriceWithTax}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

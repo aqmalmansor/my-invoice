@@ -149,7 +149,7 @@ export const InvoiceItemsFields: FC = () => {
         Manage your invoice items here
       </Text>
       <InvoiceConfig />
-      <div className="grid grid-cols-8 gap-4">
+      <div className="grid grid-cols-8 gap-4" id="invoiceItems">
         {invoiceItemsHeaders}
         {invoiceItemsBody}
       </div>

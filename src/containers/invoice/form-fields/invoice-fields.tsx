@@ -15,6 +15,7 @@ export const InvoiceFields: FC = () => {
       </Text>
       <div className="grid grid-cols-3 gap-4">
         <TextInput
+          id="invoiceNumber"
           name="invoiceNumber"
           label="Invoice Number"
           helperText="Please enter your invoice number"

@@ -18,6 +18,7 @@ import { InvoiceFields } from "./invoice-fields";
 import { InvoiceItemsFields } from "./invoice-items-fields";
 import { PaymentInformationFields } from "./payment-information-fields";
 import { PreviewPdfModal } from "./preview-pdf-modal";
+import { ScrollToError } from "./scroll-to-error";
 
 export const FormFields: FC = () => {
   const { localStorageState, handleUpdateLocalStorageState } =
@@ -55,13 +56,14 @@ export const FormFields: FC = () => {
       >
         {({ isValid, dirty, resetForm, errors }) => (
           <Form noValidate>
+            <ScrollToError />
             {isOpen && <PreviewPdfModal toggle={toggle} />}
             <InvoiceFields />
             <div className="grid grid-cols-2 gap-8">
-              <div className="grid col-span-1">
+              <div id="business" className="grid col-span-1">
                 <BusinessFields />
               </div>
-              <div className="grid col-span-1 self-start">
+              <div id="client" className="grid col-span-1 self-start">
                 <CustomerFields />
               </div>
             </div>

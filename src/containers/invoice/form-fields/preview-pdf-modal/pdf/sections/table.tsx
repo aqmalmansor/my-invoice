@@ -81,12 +81,12 @@ const TableSummary = ({
   <View style={styles.summaryContainer}>
     <View style={styles.summaryCol}>
       <Text style={styles.summaryLabelText}>Subtotal:</Text>
-      <Text style={styles.summaryLabelText}>Tax ({tax}%):</Text>
+      {tax && <Text style={styles.summaryLabelText}>Tax ({tax}%):</Text>}
       <Text style={styles.summaryLabelText}>Due Amount:</Text>
     </View>
     <View style={[styles.summaryCol, { minWidth: "80px" }]}>
       <Text style={styles.summaryValueText}>{subTotalPrice}</Text>
-      <Text style={styles.summaryValueText}>{totalTaxPrice}</Text>
+      {tax && <Text style={styles.summaryValueText}>{totalTaxPrice}</Text>}
       <Text style={styles.summaryValueText}>{totalPriceWithTax}</Text>
     </View>
   </View>

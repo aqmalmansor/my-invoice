@@ -82,12 +82,20 @@ export const validationSchema = yup.object({
   tax: yup.number().positive(MINIMUM_VALUE_ERROR(0)).nullable().optional(),
   paymentInformation: yup
     .object({
-      bankName: yup.string().nullable().required(REQUIRED_FIELD_ERROR),
-      bankAccHolderName: yup.string().nullable().required(REQUIRED_FIELD_ERROR),
+      bankName: yup.string().nullable(),
+      bankAccHolderName: yup
+        .string()
+        .nullable()
+        .when("bankName", (bankName, schema) =>
+          bankName ? schema.required(REQUIRED_FIELD_ERROR) : schema,
+        ),
       bankAccHolderNumber: yup
         .number()
         .nullable()
-        .required(REQUIRED_FIELD_ERROR),
+        .nullable()
+        .when("bankName", (bankName, schema) =>
+          bankName ? schema.required(REQUIRED_FIELD_ERROR) : schema,
+        ),
       swiftCode: yup.string().nullable(),
     })
     .nullable()

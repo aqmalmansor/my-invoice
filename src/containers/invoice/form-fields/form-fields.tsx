@@ -2,7 +2,8 @@ import { FC, useState } from "react";
 import { Button, Flex } from "@radix-ui/themes";
 import { Form, Formik } from "formik";
 
-import { DEBUG } from "@app/lib/constants";
+import { useLocalStorage } from "@app/hooks";
+import { DEBUG, INVOICE_FORM_VALUES_KEY } from "@app/lib/constants";
 
 import {
   debugFormValues,
@@ -19,18 +20,38 @@ import { PaymentInformationFields } from "./payment-information-fields";
 import { PreviewPdfModal } from "./preview-pdf-modal";
 
 export const FormFields: FC = () => {
-  const initialValues = DEBUG ? debugFormValues : initialFormValues;
+  const { localStorageState, handleUpdateLocalStorageState } =
+    useLocalStorage<FormValuesType>({
+      key: INVOICE_FORM_VALUES_KEY,
+      initValue: DEBUG ? debugFormValues : initialFormValues,
+    });
 
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
+  const onSubmit = (values: FormValuesType) => {
+    setIsOpen(true);
+    handleUpdateLocalStorageState({
+      ...initialFormValues,
+      notes: values.notes || [],
+      business: {
+        ...values.business,
+        logo: null,
+      },
+      invoiceNumber: values.invoiceNumber,
+      paymentInformation: values.paymentInformation,
+      tax: values.tax,
+      currency: values.currency,
+    });
+  };
+
   return (
     <div>
       <Formik<FormValuesType>
-        initialValues={initialValues}
+        initialValues={localStorageState}
         validationSchema={validationSchema}
-        onSubmit={() => setIsOpen(true)}
+        onSubmit={(val) => onSubmit(val)}
       >
         {({ isValid, dirty, resetForm, errors }) => (
           <Form noValidate>
@@ -56,7 +77,11 @@ export const FormFields: FC = () => {
               <Button
                 type="reset"
                 variant="outline"
-                onClick={() => resetForm()}
+                onClick={() =>
+                  resetForm({
+                    values: initialFormValues,
+                  })
+                }
                 className="flex-grow min-w-[200px]"
               >
                 Reset

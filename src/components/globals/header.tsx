@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 export const Header = () => (
   <Flex align="center" justify="between" className="pt-3 pb-5 mb-3 ">
-    <Text weight="bold" size="8" className="text-center">
+    <Text weight="bold" size="8">
       <NavLink label="My Invoice Generator" to="invoice" isFeatureReady />
     </Text>
   </Flex>

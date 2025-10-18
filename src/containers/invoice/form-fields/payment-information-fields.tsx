@@ -14,28 +14,28 @@ export const PaymentInformationFields: FC = () => {
         Payment Information (Bank Transfer)
       </Text>
       <div className="flex flex-wrap gap-x-8">
-        <div className="w-[calc(50%-1rem)]">
+        <div className="md:w-[calc(50%-1rem)] w-full">
           <TextInput
             name="paymentInformation.bankName"
             label="Bank Name"
             helperText="Please enter your bank name"
           />
         </div>
-        <div className="w-[calc(50%-1rem)]">
+        <div className="md:w-[calc(50%-1rem)] w-full">
           <TextInput
             name="paymentInformation.swiftCode"
             label="Swift Code"
             helperText="Please enter your bank swift code"
           />
         </div>
-        <div className="w-[calc(50%-1rem)]">
+        <div className="md:w-[calc(50%-1rem)] w-full">
           <TextInput
             name="paymentInformation.bankAccHolderName"
             label="Bank Account Holder Name"
             helperText="Please enter your bank account holder name"
           />
         </div>
-        <div className="w-[calc(50%-1rem)]">
+        <div className="md:w-[calc(50%-1rem)] w-full">
           <TextInput
             type="number"
             name="paymentInformation.bankAccHolderNumber"

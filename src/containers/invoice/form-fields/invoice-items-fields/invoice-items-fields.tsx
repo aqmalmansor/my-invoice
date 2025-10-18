@@ -34,7 +34,7 @@ export const InvoiceItemsFields: FC = () => {
             invoiceItems.map((invoice, index) => {
               return (
                 <Fragment key={`invoice-item-${invoice.id}`}>
-                  <div className="grid col-span-3">
+                  <div className="grid col-span-3 md:col-span-3">
                     <TextInput
                       name={`invoiceItems[${index}].name`}
                       helperText="Item description"
@@ -75,7 +75,7 @@ export const InvoiceItemsFields: FC = () => {
                       startAdornment={currencyLabel}
                     />
                   </div>
-                  <Text align="center" className="pt-2">
+                  <Text align="center" className="pt-2 min-w-16 md:min-w-max">
                     {formatPrice(invoice.price * invoice.quantity)}
                   </Text>
                   <Flex justify="center" className="pt-2">
@@ -109,7 +109,7 @@ export const InvoiceItemsFields: FC = () => {
             </div>
           );
 
-          return <>{[renderItems(), renderAddItem()]}</>;
+          return [renderItems(), renderAddItem()];
         }}
       />
     ),
@@ -140,7 +140,7 @@ export const InvoiceItemsFields: FC = () => {
   );
 
   return (
-    <div className="my-3 w-full">
+    <div className="my-3 w-full overflow-x-auto">
       <Text
         weight="bold"
         size="6"
@@ -149,16 +149,18 @@ export const InvoiceItemsFields: FC = () => {
         Manage your invoice items here
       </Text>
       <InvoiceConfig />
-      <div className="grid grid-cols-8 gap-4" id="invoiceItems">
-        {invoiceItemsHeaders}
-        {invoiceItemsBody}
+      <div className="overflow-x-auto max-w-full pb-6 mb:pb-0">
+        <div className="grid grid-cols-8 gap-4 min-w-[900px]" id="invoiceItems">
+          {invoiceItemsHeaders}
+          {invoiceItemsBody}
+        </div>
       </div>
       <Separator size="4" my="5" />
       <div className="grid grid-cols-12 gap-4">
-        <div className="grid col-span-6">
+        <div className="grid col-span-12 md:col-span-6">
           <AdditionalNotesFields />
         </div>
-        <div className="grid col-span-6">
+        <div className="grid col-span-12 md:col-span-6">
           <div className="flex flex-col gap-4">
             <InvoiceItemsFooter label="Subtotal Amount" value={subTotalPrice} />
             {tax && (

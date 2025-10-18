@@ -59,8 +59,8 @@ export const FormFields: FC = () => {
             <ScrollToError />
             {isOpen && <PreviewPdfModal toggle={toggle} />}
             <InvoiceFields />
-            <div className="grid grid-cols-2 gap-8">
-              <div id="business" className="grid col-span-1">
+            <div className="grid md:grid-cols-2 gap-8">
+              <div id="business" className="grid md:col-span-1">
                 <BusinessFields />
               </div>
               <div id="client" className="grid col-span-1 self-start">

@@ -21,7 +21,7 @@ export const BusinessFields: FC = () => {
           helperText="Please enter your company name"
         />
       </div>
-      <div className="grid col-span-2 grid-cols-2 gap-4">
+      <div className="grid col-span-2 md:grid-cols-2 md:gap-4">
         <TextInput
           required
           name="business.phone"
